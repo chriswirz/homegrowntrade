@@ -24,7 +24,7 @@ set warDir [lrange $argv 4 4]
 set timeout -1
 
 # spawns appcfg.sh
-spawn $gaeHome/bin/appcfg.sh --enable_jar_splitting --passin --email=$username $cmd $warDir
+spawn $gaeHome/bin/appcfg.sh --passin --email=$username $cmd $warDir
 match_max 100000
 
 expect {

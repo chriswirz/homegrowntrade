@@ -115,7 +115,9 @@
 	</dependencies>
 
 	<build>
-		<finalName>${project.artifactId}</finalName>
+<!-- 	Uncomment the next line to remove version numbers from -->
+<!-- 	the artifacts -->
+<!-- 		<finalName>${project.artifactId}</finalName> -->
 		<plugins>
 			<!-- This plug-in "enhances" your domain model objects (i.e. makes them 
 				persistent for datanucleus) -->
