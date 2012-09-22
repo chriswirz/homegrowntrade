@@ -92,12 +92,11 @@
 			<artifactId>jta</artifactId>
 			<version>1.1</version>
 		</dependency>
-		<!-- Google App Engine meta-package -->
+		<!-- Google App Engine api -->
 		<dependency>
-			<groupId>net.kindleit</groupId>
-			<artifactId>gae-runtime</artifactId>
+			<groupId>com.google.appengine</groupId>
+			<artifactId>appengine-api-1.0-sdk</artifactId>
 			<version>${gae.version}</version>
-			<type>pom</type>
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
