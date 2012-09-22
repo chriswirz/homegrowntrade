@@ -11,12 +11,12 @@
 
 	<name>${gae.applicationname}</name>
 
+	<!-- Configuration -->
 	<properties>
 		<!-- Sets the project's default encoding. http://docs.codehaus.org/display/MAVENUSER/POM+Element+for+Source+File+Encoding -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<!-- For "eclipse:eclipse" goal -->
 		<downloadSources>true</downloadSources>
-		<!-- Should match ${gae.home} version -->
 		<gae.version>1.6.6</gae.version>
 		<gwt.version>2.4.0</gwt.version>
 		<gae.application>homegrowntradeblacksburg</gae.application>
@@ -27,6 +27,21 @@
 		<maven.compiler.target>1.6</maven.compiler.target>
 	</properties>
 
+	<!-- Alternative profiles for overriding properties -->
+	<profiles>
+		<profile>
+			<id>deploy-production</id>
+			<activation>
+				<property>
+					<name>environment</name>
+					<value>production</value>
+				</property>
+			</activation>
+			<properties>
+				<gae.application.version>production</gae.application.version>
+			</properties>
+		</profile>
+	</profiles>
 
 	<dependencies>
 		<dependency>
@@ -66,14 +81,12 @@
 			<classifier>sources</classifier>
 			<scope>provided</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>org.datanucleus</groupId>
 			<artifactId>datanucleus-core</artifactId>
 			<version>${datanucleus.version}</version>
 			<scope>runtime</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>javax.transaction</groupId>
 			<artifactId>jta</artifactId>
@@ -85,9 +98,11 @@
 			<artifactId>gae-runtime</artifactId>
 			<version>${gae.version}</version>
 			<type>pom</type>
+			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 
+	<!-- Plugins that provide build functionality -->
 	<build>
 		<finalName>war</finalName>
 		<outputDirectory>target/war</outputDirectory>
@@ -111,7 +126,7 @@
 				</configuration>
 			</plugin>
 
-	<!-- Copy files in resources into the war -->
+			<!-- Copy files in resources into the war -->
 			<plugin>
 				<artifactId>maven-resources-plugin</artifactId>
 				<version>2.4.2</version>
@@ -213,20 +228,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
-	<profiles>
-		<profile>
-			<id>deploy-production</id>
-			<activation>
-				<property>
-					<name>environment</name>
-					<value>production</value>
-				</property>
-			</activation>
-
-			<properties>
-				<gae.application.version>production</gae.application.version>
-			</properties>
-		</profile>
-	</profiles>
 </project>

@@ -10,4 +10,6 @@
 
     <source path="model"/>
     <source path="client"/>
+    <source path="client.widgets"/>
+    <source path="client.content"/>
 </module>
